@@ -1,0 +1,140 @@
+
+.tracker-page {
+    padding: 30px;
+    color: #1e293b;
+}
+
+.tracker-form,
+.tracker-list {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 24px;
+}
+
+.tracker-form h2,
+.tracker-list h2 {
+    margin: 0 0 20px;
+    font-size: 20px;
+}
+
+.tracker-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.tracker-form h2 {
+    grid-column: 1 / -1;
+}
+
+.tracker-form input,
+.tracker-form select,
+.tracker-card select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #334155;
+    font-size: 14px;
+    outline: none;
+}
+
+.tracker-form input:focus,
+.tracker-form select:focus,
+.tracker-card select:focus {
+    border-color: #2563eb;
+}
+
+.tracker-form button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    padding: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.tracker-form button:hover {
+    background: #1d4ed8;
+}
+
+.tracker-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 22px;
+}
+
+.tracker-stats > div {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.tracker-stats h2 {
+    color: #2563eb;
+    font-size: 28px;
+    margin: 0 0 6px;
+}
+
+.tracker-stats p {
+    color: #64748b;
+    font-size: 13px;
+    margin: 0;
+}
+
+.tracker-card {
+    display: grid;
+    grid-template-columns: 1fr 160px auto;
+    align-items: center;
+    gap: 16px;
+    padding: 17px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.tracker-card:last-child {
+    border-bottom: none;
+}
+
+.tracker-card h3 {
+    margin: 0 0 5px;
+    font-size: 16px;
+}
+
+.tracker-card p {
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.tracker-card button {
+    padding: 9px 13px;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    background: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+@media (max-width: 700px) {
+    .tracker-page {
+        padding: 16px;
+    }
+
+    .tracker-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tracker-form {
+        grid-template-columns: 1fr;
+    }
+
+    .tracker-card {
+        grid-template-columns: 1fr;
+    }
+}

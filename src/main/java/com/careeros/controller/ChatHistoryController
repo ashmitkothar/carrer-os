@@ -1,0 +1,56 @@
+
+package com.careeros.career_os.controller;
+
+import com.careeros.career_os.entity.ChatMessage;
+import com.careeros.career_os.repository.ChatMessageRepository;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api/ai/history")
+@CrossOrigin(origins = "http://localhost:5173")
+public class ChatHistoryController {
+
+    private final ChatMessageRepository chatMessageRepository;
+
+    public ChatHistoryController(
+            ChatMessageRepository chatMessageRepository) {
+
+        this.chatMessageRepository = chatMessageRepository;
+    }
+
+    // Load chat history
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<ChatMessage>> getChatHistory(
+            @PathVariable Long userId) {
+
+        System.out.println("CHAT HISTORY REQUEST RECEIVED");
+        System.out.println("User ID: " + userId);
+
+        List<ChatMessage> messages =
+                chatMessageRepository
+                        .findAllByUserIdOrderByCreatedAtAsc(userId);
+
+        System.out.println("MESSAGES FOUND: " + messages.size());
+
+        return ResponseEntity.ok(messages);
+    }
+
+    // Clear chat history
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Map<String, String>> clearChatHistory(
+            @PathVariable Long userId) {
+
+        chatMessageRepository.deleteAllByUserId(userId);
+
+        System.out.println("CHAT HISTORY CLEARED FOR USER: " + userId);
+
+        return ResponseEntity.ok(
+                Map.of("message", "Chat history cleared successfully!")
+        );
+    }
+}

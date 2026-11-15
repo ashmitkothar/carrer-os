@@ -1,0 +1,263 @@
+
+.resume-upload-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    color: #1e293b;
+}
+
+.upload-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 26px;
+}
+
+.upload-eyebrow {
+    color: #0f766e;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.upload-heading h1 {
+    font-size: 28px;
+    margin: 8px 0;
+}
+
+.upload-heading p {
+    color: #64748b;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.upload-heading-icon {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ccfbf1;
+    color: #0f766e;
+    font-size: 28px;
+    border-radius: 15px;
+}
+
+.upload-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 26px;
+}
+
+.upload-card-heading {
+    margin-bottom: 22px;
+}
+
+.upload-card-heading h2 {
+    font-size: 19px;
+    margin: 0 0 7px;
+}
+
+.upload-card-heading p {
+    color: #64748b;
+    font-size: 13px;
+    margin: 0;
+}
+
+.pdf-drop-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 38px 18px;
+    border: 2px dashed #99c5ec;
+    border-radius: 13px;
+    background: #f8fbff;
+    cursor: pointer;
+}
+
+.pdf-upload-icon {
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.pdf-drop-area h3 {
+    font-size: 16px;
+    margin: 0 0 8px;
+    overflow-wrap: anywhere;
+}
+
+.pdf-drop-area p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0 0 18px;
+}
+
+.pdf-browse-button {
+    padding: 10px 20px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.pdf-drop-area input {
+    display: none;
+}
+
+.upload-guidelines {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin: 18px 0 24px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.upload-analyze-button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #0f766e;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.upload-analyze-button:hover {
+    background: #115e59;
+}
+
+.upload-analyze-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.upload-note {
+    margin: 14px 0 0;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.upload-error {
+    margin-bottom: 16px;
+    padding: 12px;
+    background: #fef2f2;
+    color: #b91c1c;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.upload-loading {
+    text-align: center;
+    padding: 35px 20px;
+    margin-top: 22px;
+    background: #eff6ff;
+    border-radius: 13px;
+    color: #2563eb;
+}
+
+.upload-spinner {
+    width: 34px;
+    height: 34px;
+    margin: 0 auto 15px;
+    border: 3px solid #bfdbfe;
+    border-top-color: #2563eb;
+    border-radius: 50%;
+    animation: resume-spin 0.8s linear infinite;
+}
+
+@keyframes resume-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.upload-loading h3 {
+    font-size: 16px;
+    margin: 0 0 8px;
+}
+
+.upload-loading p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+}
+
+.uploaded-analysis {
+    margin-top: 25px;
+    padding: 26px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 15px;
+}
+
+.uploaded-analysis-heading {
+    padding-bottom: 18px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.uploaded-analysis-heading span {
+    color: #0f766e;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.uploaded-analysis-heading h2 {
+    font-size: 22px;
+    margin: 9px 0;
+}
+
+.uploaded-analysis-heading p {
+    color: #64748b;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.uploaded-analysis-content {
+    padding-top: 15px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #334155;
+}
+
+.uploaded-analysis-content h2 {
+    font-size: 19px;
+    color: #1e293b;
+    margin-top: 25px;
+}
+
+.uploaded-analysis-content h3 {
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.uploaded-analysis-content li {
+    margin-bottom: 8px;
+}
+
+.uploaded-analysis-content strong {
+    color: #1e293b;
+}
+
+@media (max-width: 650px) {
+    .upload-card,
+    .uploaded-analysis {
+        padding: 18px;
+    }
+
+    .upload-guidelines {
+        flex-direction: column;
+        gap: 9px;
+    }
+
+    .upload-heading {
+        align-items: flex-start;
+    }
+}

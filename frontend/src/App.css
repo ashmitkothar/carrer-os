@@ -1,0 +1,251 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0B0B0C;
+  --surface: #151515;
+  --surface-light: #1D1B18;
+  --gold: #D6B878;
+  --gold-light: #E8D3A2;
+  --gold-dark: #A98B50;
+  --text: #F5F2EB;
+  --muted: #A7A197;
+  --border: #383126;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.navbar {
+  height: 82px;
+  padding: 0 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0D0D0D;
+  border-bottom: 1px solid #29251E;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 19px;
+  font-weight: 750;
+  letter-spacing: 2px;
+  color: var(--text);
+}
+
+.brand-icon {
+  background: var(--gold);
+  color: #15120B;
+  padding: 10px 14px;
+  border-radius: 7px;
+}
+
+.nav-text {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+  max-width: 1150px;
+  margin: auto;
+  padding: 70px 25px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  align-items: center;
+  gap: 80px;
+}
+
+.tag {
+  display: inline-block;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  margin-bottom: 25px;
+}
+
+.welcome-section h1 {
+  font-size: 52px;
+  line-height: 1.15;
+  margin-bottom: 22px;
+  color: var(--text);
+  letter-spacing: -1.5px;
+}
+
+.welcome-section h1 span {
+  color: var(--gold);
+}
+
+.welcome-section > p {
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 430px;
+  font-size: 15px;
+}
+
+.feature-list {
+  margin-top: 35px;
+  display: grid;
+  gap: 18px;
+  color: #DED9CE;
+  font-size: 14px;
+}
+
+.feature-list div::first-letter {
+  color: var(--gold);
+}
+
+.login-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 38px;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.25);
+}
+
+.card-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: #30291D;
+  color: var(--gold-light);
+  font-size: 23px;
+  margin-bottom: 22px;
+}
+
+.login-card h2 {
+  font-size: 27px;
+  margin-bottom: 9px;
+  color: var(--text);
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+.login-card label {
+  display: block;
+  font-size: 13px;
+  margin: 19px 0 9px;
+  color: #DED9CE;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 7px;
+  border: 1px solid #454036;
+  background: #101010;
+  color: var(--text);
+  outline: none;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.login-card input::placeholder {
+  color: #777166;
+}
+
+.login-card input:focus {
+  border-color: var(--gold);
+}
+
+.password-box {
+  position: relative;
+}
+
+.password-box input {
+  padding-right: 65px;
+}
+
+.show-password {
+  position: absolute;
+  right: 12px;
+  top: 13px;
+  border: none;
+  background: none;
+  color: var(--gold);
+  cursor: pointer;
+}
+
+.login-button {
+  width: 100%;
+  margin-top: 28px;
+  padding: 15px;
+  background: var(--gold);
+  color: #17130B;
+  border: 1px solid var(--gold-light);
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: 750;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.login-button:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+}
+
+.login-button span {
+  margin-left: 8px;
+}
+
+.card-footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 25px;
+}
+
+footer {
+  text-align: center;
+  padding: 22px;
+  color: #898276;
+  font-size: 12px;
+  border-top: 1px solid #29251E;
+  background: #0D0D0D;
+}
+
+@media (max-width: 800px) {
+  .main-content {
+    grid-template-columns: 1fr;
+    gap: 45px;
+    padding: 45px 22px;
+  }
+
+  .welcome-section h1 {
+    font-size: 38px;
+  }
+
+  .login-card {
+    padding: 28px;
+  }
+
+  .navbar {
+    padding: 0 22px;
+  }
+}
