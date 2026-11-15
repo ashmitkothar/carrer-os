@@ -43,8 +43,6 @@ function Assistant({ user }) {
         setHistoryStatus("");
 
         try {
-            console.log("Loading chat history for user:", userId);
-
             const response = await fetch(
                 `http://localhost:8080/api/ai/history/${userId}`
             );
@@ -61,8 +59,6 @@ function Assistant({ user }) {
                 throw new Error("Invalid chat history response.");
             }
 
-            console.log("Chat history received:", data.length);
-
             if (data.length > 0) {
                 setMessages(
                     data.map(item => ({
@@ -75,22 +71,23 @@ function Assistant({ user }) {
                 setHistoryStatus(
                     `${data.length} saved messages loaded successfully.`
                 );
-
             } else {
                 setMessages([welcomeMessage]);
-                setHistoryStatus("No saved chat messages found.");
             }
 
         } catch (err) {
             console.error("History loading error:", err);
-            setError(err.message);
+
+            // Do not show history fetch errors in the chat UI.
+            setError("");
+            setHistoryStatus("");
 
         } finally {
             setHistoryLoading(false);
         }
     }, [userId]);
 
-    // Automatically load history when assistant opens
+    // Automatically load history
     useEffect(() => {
         loadHistory();
     }, [loadHistory]);
@@ -154,7 +151,12 @@ function Assistant({ user }) {
             setHistoryStatus("Conversation saved successfully.");
 
         } catch (err) {
-            setError(err.message || "Unable to connect to AI.");
+            console.error("AI chat error:", err);
+            setError(
+                err.message === "Failed to fetch"
+                    ? "Unable to connect to AI. Please try again."
+                    : err.message || "Unable to connect to AI."
+            );
         } finally {
             setLoading(false);
         }
@@ -194,8 +196,11 @@ function Assistant({ user }) {
             setHistoryStatus("Chat history cleared successfully.");
 
         } catch (err) {
-            setError(err.message);
-
+            setError(
+                err.message === "Failed to fetch"
+                    ? "Unable to connect. Please try again."
+                    : err.message
+            );
         } finally {
             setClearing(false);
         }
@@ -204,9 +209,7 @@ function Assistant({ user }) {
     return (
         <div className="assistant-page">
 
-            {/* Header */}
             <div className="assistant-heading">
-
                 <div>
                     <span className="assistant-eyebrow">
                         YOUR PERSONAL AI GUIDE
@@ -232,9 +235,7 @@ function Assistant({ user }) {
                         onClick={loadHistory}
                         disabled={historyLoading || loading}
                     >
-                        {historyLoading
-                            ? "Loading..."
-                            : "↻ View History"}
+                        {historyLoading ? "Loading..." : "↻ View History"}
                     </button>
 
                     <button
@@ -249,7 +250,6 @@ function Assistant({ user }) {
                 </div>
             </div>
 
-            {/* Chat Container */}
             <div className="assistant-chat">
 
                 <div className="chat-messages">
@@ -264,13 +264,11 @@ function Assistant({ user }) {
                                 key={message.id || index}
                                 className={`chat-message ${message.role}`}
                             >
-
                                 <div className="chat-avatar">
                                     {message.role === "user" ? "U" : "AI"}
                                 </div>
 
                                 <div className="chat-bubble">
-
                                     {message.role === "assistant" ? (
                                         <ReactMarkdown>
                                             {message.content}
@@ -278,9 +276,7 @@ function Assistant({ user }) {
                                     ) : (
                                         message.content
                                     )}
-
                                 </div>
-
                             </div>
                         ))
                     )}
@@ -311,12 +307,10 @@ function Assistant({ user }) {
                     </div>
                 )}
 
-                {/* Input */}
                 <form
                     className="chat-input-area"
                     onSubmit={sendMessage}
                 >
-
                     <input
                         type="text"
                         placeholder="Ask anything about your career..."
@@ -336,7 +330,6 @@ function Assistant({ user }) {
                     >
                         {loading ? "..." : "Send ↑"}
                     </button>
-
                 </form>
 
                 <p className="assistant-disclaimer">

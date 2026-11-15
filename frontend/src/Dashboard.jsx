@@ -10,7 +10,7 @@ import Resume from "./Resume";
 import ResumeUpload from "./ResumeUpload";
 import DashboardAnalytics from "./DashboardAnalytics";
 
-function Dashboard({ user }) {
+function Dashboard({ user, onLogout }) {
     const name = user?.name || "User";
     const firstName = name.split(" ")[0];
 
@@ -34,7 +34,6 @@ function Dashboard({ user }) {
     return (
         <div className="dashboard">
 
-            {/* Sidebar */}
             <aside className="sidebar">
 
                 <div className="dashboard-brand">
@@ -64,15 +63,23 @@ function Dashboard({ user }) {
                         {name.charAt(0).toUpperCase()}
                     </div>
 
-                    <div>
+                    <div className="sidebar-user-info">
                         <strong>{name}</strong>
                         <p>Career OS Member</p>
                     </div>
                 </div>
 
+                <button
+                    className="logout-button"
+                    onClick={onLogout}
+                    type="button"
+                >
+                    <span>↪</span>
+                    Logout
+                </button>
+
             </aside>
 
-            {/* Main Content */}
             <main className="dashboard-main">
 
                 <header className="dashboard-header">
@@ -90,31 +97,24 @@ function Dashboard({ user }) {
                 </header>
 
                 {activePage === "My Profile" ? (
-
                     <Profile user={user} />
 
                 ) : activePage === "Job Recommendations" ? (
-
                     <Jobs user={user} />
 
                 ) : activePage === "Application Tracker" ? (
-
                     <Tracker user={user} />
 
                 ) : activePage === "Career Analytics" ? (
-
                     <DashboardAnalytics user={user} />
 
                 ) : activePage === "Resume Builder" ? (
-
                     <Resume user={user} />
 
                 ) : activePage === "Resume Analyzer" ? (
-
                     <ResumeUpload user={user} />
 
                 ) : activePage === "AI Career Assistant" ? (
-
                     <Assistant user={user} />
 
                 ) : activePage === "Overview" ? (

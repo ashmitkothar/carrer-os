@@ -16,7 +16,6 @@ function getSavedUser() {
     if (!user || !user.id) return null;
 
     return user;
-
   } catch (error) {
     console.error("Unable to restore login:", error);
     localStorage.removeItem(STORAGE_KEY);
@@ -35,8 +34,17 @@ function App() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  // Restore user after browser refresh
   const [loggedInUser, setLoggedInUser] = useState(getSavedUser);
+
+  function handleLogout() {
+    localStorage.removeItem(STORAGE_KEY);
+    setLoggedInUser(null);
+    setIsLogin(true);
+    setPassword("");
+    setConfirmPassword("");
+    setError("");
+    setSuccess("");
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -81,8 +89,6 @@ function App() {
       }
 
       if (isLogin) {
-
-        // Never store the password in localStorage
         const safeUser = {
           ...data,
           name: data.name || email.split("@")[0]
@@ -91,20 +97,14 @@ function App() {
         delete safeUser.password;
         delete safeUser.passwordHash;
 
-        // Persist user details across page refresh
         localStorage.setItem(
             STORAGE_KEY,
             JSON.stringify(safeUser)
         );
 
         setLoggedInUser(safeUser);
-
       } else {
-
-        setSuccess(
-            "Account created successfully! Please sign in."
-        );
-
+        setSuccess("Account created successfully! Please sign in.");
         setIsLogin(true);
         setName("");
         setPassword("");
@@ -117,7 +117,6 @@ function App() {
               ? "Backend connection failed. Check Spring Boot."
               : err.message
       );
-
     } finally {
       setLoading(false);
     }
@@ -131,14 +130,17 @@ function App() {
     setConfirmPassword("");
   }
 
-  // Dashboard remains active after refresh
   if (loggedInUser) {
-    return <Dashboard user={loggedInUser} />;
+    return (
+        <Dashboard
+            user={loggedInUser}
+            onLogout={handleLogout}
+        />
+    );
   }
 
   return (
       <div className="app-container">
-
         <nav className="navbar">
           <div className="brand">
             <span className="brand-icon">C</span>
@@ -151,9 +153,7 @@ function App() {
         </nav>
 
         <main className="main-content">
-
           <section className="welcome-section">
-
             <div className="tag">
               ✦ YOUR CAREER COMPANION
             </div>
@@ -174,11 +174,9 @@ function App() {
               <div>✦ Discover relevant job opportunities</div>
               <div>✦ Get smarter career recommendations</div>
             </div>
-
           </section>
 
           <section className="login-card">
-
             <div className="card-icon">↗</div>
 
             <h2>
@@ -192,11 +190,9 @@ function App() {
             </p>
 
             <form onSubmit={handleSubmit}>
-
               {!isLogin && (
                   <>
                     <label>Full Name</label>
-
                     <input
                         type="text"
                         placeholder="Enter your full name"
@@ -208,7 +204,6 @@ function App() {
               )}
 
               <label>Email address</label>
-
               <input
                   type="email"
                   placeholder="you@example.com"
@@ -220,7 +215,6 @@ function App() {
               <label>Password</label>
 
               <div className="password-box">
-
                 <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
@@ -237,20 +231,16 @@ function App() {
                 >
                   {showPassword ? "Hide" : "Show"}
                 </button>
-
               </div>
 
               {!isLogin && (
                   <>
                     <label>Confirm Password</label>
-
                     <input
                         type="password"
                         placeholder="Confirm your password"
                         value={confirmPassword}
-                        onChange={(e) =>
-                            setConfirmPassword(e.target.value)
-                        }
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                         minLength={8}
                         required
                     />
@@ -290,7 +280,6 @@ function App() {
 
                 {!loading && <span>→</span>}
               </button>
-
             </form>
 
             <p className="card-footer">
@@ -310,20 +299,15 @@ function App() {
                     fontSize: "12px"
                   }}
               >
-                {isLogin
-                    ? "Create an account"
-                    : "Sign in"}
+                {isLogin ? "Create an account" : "Sign in"}
               </button>
             </p>
-
           </section>
-
         </main>
 
         <footer>
           © 2026 Career OS · Built for your next chapter.
         </footer>
-
       </div>
   );
 }
