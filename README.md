@@ -1,4 +1,3 @@
-# Career OS 🚀
 ### AI-Powered Career Management Platform
 
 Career OS is a web-based career management platform designed to help students and job seekers manage their career journey in one place.
@@ -135,6 +134,15 @@ The goal of Career OS is to provide a centralized platform that simplifies caree
 
 GitHub: [@ashmitkothar](https://github.com/ashmitkothar)
 
----
+## 🏗️ Project Architecture
 
-*Career OS – Your Career, Organized.*
+```mermaid
+flowchart TD
+    A[User] --> B[React Frontend]
+    B --> C[Spring Boot Backend]
+    C --> D[Controllers]
+    D --> E[Services]
+    E --> F[Repositories]
+    F --> G[(MySQL Database)]
+    E --> H[Gemini AI API]
+    E --> I[Jooble Jobs API]
