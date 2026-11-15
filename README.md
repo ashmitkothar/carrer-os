@@ -120,9 +120,10 @@ Open the local frontend URL shown by Vite in your terminal.
 - Use environment variables for sensitive configuration.
 - Do not commit `.env` files or private credentials.
 
-## 📸 Screenshots
+## 📸 Project Screenshots
 
-Screenshots of the application will be added here.
+### Dashboard
+![Career OS Dashboard](screenshots/dashboard.png)
 
 ## 🎯 Project Goal
 
